@@ -12,7 +12,7 @@ const Events = ({ onEventClick }) => {
       description: "A 24-hour hackathon focusing on AI and web development. Join developers, designers, and innovators for an intensive coding experience.",
       date: "2025-09-15",
       time: "9:00 AM",
-      location: "Tech Innovation Center",
+      location: "Ground Floor Lab",
       category: "Hackathon",
       image: "🚀",
       color: "neon-blue"
@@ -23,7 +23,7 @@ const Events = ({ onEventClick }) => {
       description: "Explore the latest advancements in artificial intelligence and machine learning. Network with industry experts and discover cutting-edge technologies.",
       date: "2025-10-20",
       time: "10:00 AM",
-      location: "Digital Conference Hall",
+      location: "Turing Hall",
       category: "Conference",
       image: "🤖",
       color: "neon-purple"
@@ -34,7 +34,7 @@ const Events = ({ onEventClick }) => {
       description: "Hands-on workshop covering modern web development technologies including React, Node.js, and cloud deployment strategies.",
       date: "2025-11-08",
       time: "2:00 PM",
-      location: "Code Academy",
+      location: "Turing Hall",
       category: "Workshop",
       image: "💻",
       color: "neon-green"
