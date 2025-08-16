@@ -14,7 +14,8 @@ const Events = ({ onEventClick }) => {
       time: "9:00 AM",
       location: "Tech Innovation Center",
       category: "Hackathon",
-      image: "🚀"
+      image: "🚀",
+      color: "neon-blue"
     },
     {
       id: 2,
@@ -24,7 +25,8 @@ const Events = ({ onEventClick }) => {
       time: "10:00 AM",
       location: "Digital Conference Hall",
       category: "Conference",
-      image: "🤖"
+      image: "🤖",
+      color: "neon-purple"
     },
     {
       id: 3,
@@ -34,7 +36,8 @@ const Events = ({ onEventClick }) => {
       time: "2:00 PM",
       location: "Code Academy",
       category: "Workshop",
-      image: "💻"
+      image: "💻",
+      color: "neon-green"
     }
   ]
 
@@ -70,16 +73,44 @@ const Events = ({ onEventClick }) => {
     })
   }
 
+  const getNeonColor = (colorName) => {
+    const colors = {
+      'neon-blue': 'text-neon-blue',
+      'neon-purple': 'text-neon-purple',
+      'neon-green': 'text-neon-green',
+      'neon-pink': 'text-neon-pink',
+      'neon-yellow': 'text-neon-yellow',
+      'neon-orange': 'text-neon-orange'
+    }
+    return colors[colorName] || 'text-neon-blue'
+  }
+
+  const getBorderColor = (colorName) => {
+    const colors = {
+      'neon-blue': 'border-neon-blue/30',
+      'neon-purple': 'border-neon-purple/30',
+      'neon-green': 'border-neon-green/30',
+      'neon-pink': 'border-neon-pink/30',
+      'neon-yellow': 'border-neon-yellow/30',
+      'neon-orange': 'border-neon-orange/30'
+    }
+    return colors[colorName] || 'border-neon-blue/30'
+  }
+
   return (
-    <section id="events" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section id="events" className="py-24 px-4 sm:px-6 lg:px-8 bg-space-950 relative overflow-hidden">
+      {/* Cosmic background elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-space-950 via-space-900/50 to-space-950"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-nebula-pattern opacity-20"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Upcoming Events
+        <div className="text-center mb-20 animate-fade-in">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            <span className="cosmic-text">Upcoming Events</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Join us for exciting tech events that will expand your knowledge and network
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed animate-slide-up">
+            Join us for exciting tech events that will expand your knowledge and network in our cosmic tech universe
           </p>
         </div>
 
@@ -88,18 +119,18 @@ const Events = ({ onEventClick }) => {
           {/* Navigation Arrows */}
           <button
             onClick={prevEvent}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-all duration-300 hover:scale-110"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-14 h-14 bg-space-200/20 backdrop-blur-cosmic rounded-full shadow-cosmic flex items-center justify-center hover:bg-space-300/30 transition-all duration-500 hover:scale-110 border border-cosmic-500/30 group"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-7 h-7 text-neon-blue group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
           <button
             onClick={nextEvent}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-all duration-300 hover:scale-110"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-14 h-14 bg-space-200/20 backdrop-blur-cosmic rounded-full shadow-cosmic flex items-center justify-center hover:bg-space-300/30 transition-all duration-500 hover:scale-110 border border-cosmic-500/30 group"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-7 h-7 text-neon-blue group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -113,48 +144,48 @@ const Events = ({ onEventClick }) => {
             {events.map((event, index) => (
               <div
                 key={event.id}
-                className="card min-w-[350px] max-w-[400px] p-6 cursor-pointer transform transition-all duration-300 hover:scale-105 animate-slide-up"
+                className={`card-cosmic min-w-[380px] max-w-[420px] p-8 cursor-pointer group hover-lift border-2 ${getBorderColor(event.color)}`}
                 style={{ scrollSnapAlign: 'center' }}
                 onClick={() => onEventClick(event)}
               >
-                <div className="text-center mb-4">
-                  <div className="text-6xl mb-4">{event.image}</div>
-                  <span className="inline-block bg-tech-100 text-tech-800 text-sm font-medium px-3 py-1 rounded-full">
+                <div className="text-center mb-6">
+                  <div className="text-7xl mb-6 group-hover:scale-110 transition-transform duration-500">{event.image}</div>
+                  <span className={`inline-block bg-${event.color.replace('neon-', '')}/20 text-${event.color} text-sm font-medium px-4 py-2 rounded-full border border-${event.color}/30 backdrop-blur-sm`}>
                     {event.category}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
+                <h3 className={`text-2xl font-bold text-white mb-4 text-center group-hover:${getNeonColor(event.color)} transition-all duration-500`}>
                   {event.name}
                 </h3>
 
-                <p className="text-gray-600 mb-4 text-center line-clamp-3">
+                <p className="text-gray-300 mb-6 text-center leading-relaxed group-hover:text-gray-200 transition-colors duration-500">
                   {event.description}
                 </p>
 
-                <div className="space-y-2 text-sm text-gray-500">
-                  <div className="flex items-center justify-center">
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="space-y-3 text-sm text-gray-400 mb-8">
+                  <div className="flex items-center justify-center group/item">
+                    <svg className="w-5 h-5 mr-3 text-neon-blue group-hover/item:text-neon-blue transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    {formatDate(event.date)}
+                    <span className="group-hover/item:text-white transition-colors duration-300">{formatDate(event.date)}</span>
                   </div>
-                  <div className="flex items-center justify-center">
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center justify-center group/item">
+                    <svg className="w-5 h-5 mr-3 text-neon-purple group-hover/item:text-neon-purple transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    {event.time}
+                    <span className="group-hover/item:text-white transition-colors duration-300">{event.time}</span>
                   </div>
-                  <div className="flex items-center justify-center">
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center justify-center group/item">
+                    <svg className="w-5 h-5 mr-3 text-neon-green group-hover/item:text-neon-green transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    {event.location}
+                    <span className="group-hover/item:text-white transition-colors duration-300">{event.location}</span>
                   </div>
                 </div>
 
-                <button className="w-full mt-6 btn-primary">
+                <button className={`w-full py-4 px-6 bg-gradient-to-r from-${event.color.replace('neon-', '')}-600 to-${event.color.replace('neon-', '')}-700 hover:from-${event.color.replace('neon-', '')}-500 hover:to-${event.color.replace('neon-', '')}-600 text-white font-semibold rounded-lg transition-all duration-500 transform hover:scale-105 hover:shadow-cosmic active:scale-95 border border-${event.color.replace('neon-', '')}-400/30 group-hover:shadow-cosmic-lg`}>
                   View Details
                 </button>
               </div>
@@ -163,13 +194,15 @@ const Events = ({ onEventClick }) => {
         </div>
 
         {/* Event Indicators */}
-        <div className="flex justify-center mt-8 space-x-2">
+        <div className="flex justify-center mt-12 space-x-3">
           {events.map((_, index) => (
             <button
               key={index}
               onClick={() => scrollToEvent(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'bg-tech-600 w-8' : 'bg-gray-300 hover:bg-gray-400'
+              className={`w-4 h-4 rounded-full transition-all duration-500 ${
+                index === currentIndex 
+                  ? 'bg-gradient-to-r from-neon-blue to-neon-purple w-12 shadow-cosmic' 
+                  : 'bg-space-400/50 hover:bg-space-300/70 hover:scale-110'
               }`}
             />
           ))}

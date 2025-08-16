@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Events from './components/Events'
 import Footer from './components/Footer'
 import EventModal from './components/EventModal'
+import ParticlesBackground from './components/ParticlesBackground'
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -20,19 +21,25 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <Hero />
-      <Events onEventClick={openEventModal} />
-      <Footer />
+    <div className="min-h-screen bg-space-950 relative overflow-hidden">
+      {/* Particles Background */}
+      <ParticlesBackground />
       
-      {isModalOpen && selectedEvent && (
-        <EventModal 
-          event={selectedEvent} 
-          isOpen={isModalOpen} 
-          onClose={closeEventModal} 
-        />
-      )}
+      {/* Content with higher z-index */}
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <Events onEventClick={openEventModal} />
+        <Footer />
+        
+        {isModalOpen && selectedEvent && (
+          <EventModal 
+            event={selectedEvent} 
+            isOpen={isModalOpen} 
+            onClose={closeEventModal} 
+          />
+        )}
+      </div>
     </div>
   )
 }
